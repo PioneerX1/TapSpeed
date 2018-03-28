@@ -31,6 +31,10 @@
 - (IBAction)StartGame:(id)sender {
     if (timeInt == 10) {
         tapInt = 0;
+        
+        self.tapLabel.text = [NSString stringWithFormat:@"%i", tapInt];
+        self.timeLabel.text = [NSString stringWithFormat:@"%i", timeInt];
+        
         self.tapButtonOutlet.enabled = YES;
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(DecrementTime) userInfo:nil repeats:YES];
     }
@@ -49,6 +53,11 @@
     if (timeInt > 0) {
         tapInt++;
         self.tapLabel.text = [NSString stringWithFormat:@"%i", tapInt];
+    }
+    if (timeInt == 0) {
+        timeInt = 10;
+        tapInt = 0;
+        self.tapButtonOutlet.enabled = NO;
     }
 }
 @end
